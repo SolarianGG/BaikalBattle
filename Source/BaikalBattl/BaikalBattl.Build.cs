@@ -14,9 +14,10 @@ public class BaikalBattl : ModuleRules
 		
 		PublicIncludePaths.AddRange( new string[]
 		{
-			"BaikalBattle/Public/Player",
-			
-		});
+			"BaikalBattle/Public/Player", "BaikalBattle/Public/Components", "BaikalBattle/Public/GameModes",
+			"BaikalBattle/Public/Weapons",
+
+        });
 
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });

@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "RusCharacter.generated.h"
 
+class UWeaponComponent;
 class UCameraComponent;
 
 class UInputAction;
@@ -27,6 +28,9 @@ protected:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	UCameraComponent* FirstPersonCameraComponent;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
+	UWeaponComponent* WeaponComponent;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input")
 	UInputAction* JumpAction;
@@ -36,6 +40,12 @@ protected:
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input")
 	UInputAction* MouseLookAction;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input")
+	UInputAction* FireAction;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input")
+	UInputAction* AlternativeFireAction;
 
 	
 	virtual void BeginPlay() override;
