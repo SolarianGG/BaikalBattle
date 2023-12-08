@@ -31,5 +31,5 @@ protected:
 
 private:
 	UPROPERTY()
-	ABaseWeapon* CurrentWeapon;
+	ABaseWeapon* CurrentWeapon = nullptr;
 };
