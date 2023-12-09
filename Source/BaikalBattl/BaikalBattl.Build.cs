@@ -8,14 +8,14 @@ public class BaikalBattl : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "UMG" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 		
 		PublicIncludePaths.AddRange( new string[]
 		{
-			"BaikalBattle/Public/Player", "BaikalBattle/Public/Components", "BaikalBattle/Public/GameModes",
-			"BaikalBattle/Public/Weapons",
+			"BaikalBattl/Public/Player", "BaikalBattl/Public/Components", "BaikalBattl/Public/GameModes",
+			"BaikalBattl/Public/Weapons", "BaikalBattl/Public/UI",
 
         });
 

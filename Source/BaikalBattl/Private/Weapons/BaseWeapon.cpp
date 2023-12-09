@@ -7,6 +7,13 @@ ABaseWeapon::ABaseWeapon()
 {
 	PrimaryActorTick.bCanEverTick = false;
 
+	WeaponMesh = CreateDefaultSubobject<USkeletalMeshComponent>("WeaponMesh");
+	SetRootComponent(WeaponMesh);
+}
+
+void ABaseWeapon::Fire()
+{
+	
 }
 
 void ABaseWeapon::BeginPlay()

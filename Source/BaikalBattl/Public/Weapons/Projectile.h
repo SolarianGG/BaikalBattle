@@ -4,23 +4,17 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "BaseWeapon.generated.h"
+#include "Projectile.generated.h"
 
 UCLASS()
-class BAIKALBATTL_API ABaseWeapon : public AActor
+class BAIKALBATTL_API AProjectile : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
-	ABaseWeapon();
+	AProjectile();
 
-	virtual void Fire();
-	
 protected:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
-	USkeletalMeshComponent* WeaponMesh;
-	
 	virtual void BeginPlay() override;
 	
-
 };

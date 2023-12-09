@@ -3,9 +3,13 @@
 
 #include "Player/RusCharacter.h"
 #include "EnhancedInputComponent.h"
+#include "HealthComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/WeaponComponent.h"
+#include "GameFramework/DamageType.h"
+#include "Engine/DamageEvents.h"
+
 
 
 ARusCharacter::ARusCharacter()
@@ -27,6 +31,8 @@ ARusCharacter::ARusCharacter()
 	//Mesh1P->SetRelativeRotation(FRotator(0.9f, -19.19f, 5.2f));
 	Mesh1P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
 
+	HealthComponent = CreateDefaultSubobject<UHealthComponent>("HealthComponent");
+	
 	WeaponComponent = CreateDefaultSubobject<UWeaponComponent>("WeaponComponent");
 }
 
@@ -58,6 +64,11 @@ void ARusCharacter::Look(const FInputActionValue& Value)
 	}
 }
 
+void ARusCharacter::TestFeature(const FInputActionValue& Value)
+{
+	TakeDamage(5.0f, FPointDamageEvent{}, GetController(), this);
+}
+
 void ARusCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -69,6 +80,7 @@ void ARusCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 		EnhancedInput->BindAction(JumpAction, ETriggerEvent::Triggered, this, &ThisClass::Jump);
 		EnhancedInput->BindAction(FireAction, ETriggerEvent::Started, WeaponComponent, &UWeaponComponent::Fire);
 		EnhancedInput->BindAction(AlternativeFireAction, ETriggerEvent::Started, WeaponComponent, &UWeaponComponent::AlternativeFire);
+		EnhancedInput->BindAction(TestAction, ETriggerEvent::Started, this, &ThisClass::TestFeature);
 	}
 }
 

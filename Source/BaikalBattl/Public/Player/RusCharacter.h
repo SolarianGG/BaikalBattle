@@ -8,7 +8,7 @@
 
 class UWeaponComponent;
 class UCameraComponent;
-
+class UHealthComponent;
 class UInputAction;
 struct FInputActionValue;
 
@@ -30,6 +30,9 @@ protected:
 	UCameraComponent* FirstPersonCameraComponent;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
+	UHealthComponent* HealthComponent;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	UWeaponComponent* WeaponComponent;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input")
@@ -47,6 +50,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input")
 	UInputAction* AlternativeFireAction;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input")
+	UInputAction* TestAction;
+
 	
 	virtual void BeginPlay() override;
 
@@ -54,4 +60,6 @@ private:
 	void Move(const FInputActionValue& Value);
 	
 	void Look(const FInputActionValue& Value);
+
+	void TestFeature(const FInputActionValue& Value);
 };
