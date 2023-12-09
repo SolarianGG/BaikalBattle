@@ -8,6 +8,8 @@
 
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnHealthChangedDelegate, int);
 
+DECLARE_MULTICAST_DELEGATE(FOnDeathDelegate);
+
 DEFINE_LOG_CATEGORY_STATIC(LogRusHealthComponent, All, All);
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
@@ -19,6 +21,8 @@ public:
 	UHealthComponent();
 
 	FOnHealthChangedDelegate OnHealthChanged;
+
+	FOnDeathDelegate OnDeathDelegate;
 
 	FORCEINLINE float GetHealth() const { return Health; }
 

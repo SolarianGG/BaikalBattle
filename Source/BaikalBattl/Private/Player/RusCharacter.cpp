@@ -39,7 +39,11 @@ ARusCharacter::ARusCharacter()
 void ARusCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	if (HealthComponent)
+	{
+		HealthComponent->OnDeathDelegate.AddUObject(this, &ThisClass::OnDeath);
+	}
 }
 
 void ARusCharacter::Move(const FInputActionValue& Value)
@@ -69,6 +73,33 @@ void ARusCharacter::TestFeature(const FInputActionValue& Value)
 	TakeDamage(5.0f, FPointDamageEvent{}, GetController(), this);
 }
 
+void ARusCharacter::Fire(const FInputActionValue& Value)
+{
+	if (FireAnimMontage)
+	{
+		Mesh1P->GetAnimInstance()->Montage_Play(FireAnimMontage, 1.f);
+	}
+	WeaponComponent->Fire();
+}
+
+void ARusCharacter::AlternativeFire(const FInputActionValue& Value)
+{
+	if (FireAnimMontage)
+	{
+		Mesh1P->GetAnimInstance()->Montage_Play(FireAnimMontage, 1.f);
+	}
+	WeaponComponent->AlternativeFire();
+}
+
+void ARusCharacter::OnDeath()
+{
+	
+
+
+
+	Destroy();
+}
+
 void ARusCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -78,8 +109,8 @@ void ARusCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 		EnhancedInput->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ThisClass::Move);
 		EnhancedInput->BindAction(MouseLookAction, ETriggerEvent::Triggered, this, &ThisClass::Look);
 		EnhancedInput->BindAction(JumpAction, ETriggerEvent::Triggered, this, &ThisClass::Jump);
-		EnhancedInput->BindAction(FireAction, ETriggerEvent::Started, WeaponComponent, &UWeaponComponent::Fire);
-		EnhancedInput->BindAction(AlternativeFireAction, ETriggerEvent::Started, WeaponComponent, &UWeaponComponent::AlternativeFire);
+		EnhancedInput->BindAction(FireAction, ETriggerEvent::Started, this, &ThisClass::Fire);
+		EnhancedInput->BindAction(AlternativeFireAction, ETriggerEvent::Started, this, &ThisClass::AlternativeFire);
 		EnhancedInput->BindAction(TestAction, ETriggerEvent::Started, this, &ThisClass::TestFeature);
 	}
 }

@@ -11,6 +11,7 @@ class UCameraComponent;
 class UHealthComponent;
 class UInputAction;
 struct FInputActionValue;
+class UAnimMontage;
 
 UCLASS()
 class BAIKALBATTL_API ARusCharacter : public ACharacter
@@ -19,6 +20,8 @@ class BAIKALBATTL_API ARusCharacter : public ACharacter
 
 public:
 	ARusCharacter();
+
+	FORCEINLINE USkeletalMeshComponent* GetMesh1P() const { return Mesh1P; }
 	
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	
@@ -53,6 +56,8 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input")
 	UInputAction* TestAction;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Animation")
+	UAnimMontage* FireAnimMontage;
 	
 	virtual void BeginPlay() override;
 
@@ -62,4 +67,10 @@ private:
 	void Look(const FInputActionValue& Value);
 
 	void TestFeature(const FInputActionValue& Value);
+
+	void Fire(const FInputActionValue& Value);
+
+	void AlternativeFire(const FInputActionValue& Value);
+
+	void OnDeath();
 };

@@ -78,6 +78,6 @@ void UHealthComponent::ApplyDamage(float Damage)
 	SetHealth(Health-Damage);
 	if (IsDead())
 	{
-		
+		OnDeathDelegate.Broadcast();
 	}
 }

@@ -20,10 +20,15 @@ public:
 	void Fire();
 
 	void AlternativeFire();
+
+	ABaseWeapon* GetCurrentWeapon() const { return CurrentWeapon; }
 	
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Weapons")
-	TSubclassOf<ABaseWeapon> Weapon;
+	TSubclassOf<ABaseWeapon> WeaponClass;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Weapons")
+	FName WeaponEquipSocketName = "weapon_r_muzzle";
 	
 	virtual void BeginPlay() override;
 
